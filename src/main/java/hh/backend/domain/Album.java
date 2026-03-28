@@ -29,12 +29,12 @@ public class Album {
     }
     
     
-    public Album(String title, String artist, int releaseYear, int trackCount, hh.backend.domain.Genre genre) {
+    public Album(String title, String artist, int releaseYear, int trackCount, Genre genre) {
         this.title = title;
         this.artist = artist;
         this.releaseYear = releaseYear;
         this.trackCount = trackCount;
-        Genre = genre;
+        this.genre = genre;
     }
 
     // getterit
@@ -54,7 +54,7 @@ public class Album {
         return trackCount;
     }
     public Genre getGenre() {
-        return Genre;
+        return genre;
     }
     // setterit
     public void setAlbumId(Long albumId) {
@@ -73,14 +73,14 @@ public class Album {
         this.trackCount = trackCount;
     }
     public void setGenre(Genre genre) {
-        Genre = genre;
+        genre = genre;
     }
 
     // toString
     @Override
     public String toString() {
         return "Album [albumId=" + albumId + ", title=" + title + ", artist=" + artist + ", releaseYear=" + releaseYear
-                + ", trackCount=" + trackCount + ", Genre=" + Genre + "]";
+                + ", trackCount=" + trackCount + ", Genre=" + genre + "]";
     }
 
     

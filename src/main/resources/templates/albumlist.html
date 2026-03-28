@@ -6,6 +6,27 @@
     <title>Levylaari Listaus</title>
 </head>
 <body>
-    <h3>Albumeita tulee tähän alle</h3>
+    <h2>LEVYLAARI</h2>
+
+    <table>
+        <tr>
+            <th>Album ID</th>
+            <th>Title</th>
+            <th>Artist</th>
+            <th>Release Year</th>
+            <th>Track Count</th>
+            <th>Genre</th>
+        </tr>
+
+        <tr th:each="album : ${albums}">
+            <td th:text="${album.albumId}"></td>
+            <td th:text="${album.title}"></td>
+            <td th:text="${album.artist}"></td>
+            <td th:text="${album.releaseYear}"></td>
+            <td th:text="${album.trackCount}"></td>
+            <td th:text="${album.genre?.genreName}"></td>
+        </tr>
+    </table>
+    <a href="/addalbum">Add New Album</a>
 </body>
 </html>
