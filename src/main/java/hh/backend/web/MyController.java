@@ -6,6 +6,7 @@ import hh.backend.domain.GenreRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -43,7 +44,13 @@ public class MyController {
     public String addBook(Model model) {
         model.addAttribute("album", new Album());
         model.addAttribute("genres", genreRepository.findAll());
-        return "addalbum"; // addAlbum.html
-        
+        return "addalbum"; // addAlbum.htm
+    }
+
+    // save album
+    @PostMapping("/save")
+    public String save(Album album) {
+        albumRepository.save(album);
+        return "redirect:albumlist"; 
     }
 }

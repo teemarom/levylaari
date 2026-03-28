@@ -32,6 +32,7 @@ public class BackendApplication {
 
 			// Genrejen lisäys tietokantaan
 			log.info("Add genre");
+			Genre unknown = genreRepository.save(new Genre("Unknown"));
 			Genre pop = genreRepository.save(new Genre("Pop"));
 			Genre rap = genreRepository.save(new Genre("Rap"));
 			Genre metal = genreRepository.save(new Genre("Metal"));
@@ -66,6 +67,12 @@ public class BackendApplication {
 				8,
 				metal
 			));
+
+			// Albumien testitulostus
+			log.info("Print all Albums");
+			for (Album album : albumRepository.findAll()) {
+				log.info(album.toString());
+			}
 
 		};
 	}

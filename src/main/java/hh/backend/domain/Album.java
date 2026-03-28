@@ -73,7 +73,7 @@ public class Album {
         this.trackCount = trackCount;
     }
     public void setGenre(Genre genre) {
-        genre = genre;
+        this.genre = genre;
     }
 
     // toString
