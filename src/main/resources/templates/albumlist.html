@@ -25,6 +25,7 @@
             <td th:text="${album.releaseYear}"></td>
             <td th:text="${album.trackCount}"></td>
             <td th:text="${album.genre?.genreName}"></td>
+            <td><a th:href="@{/delete/{albumId}(albumId=${album.albumId})}">Delete Album</a></td>
         </tr>
     </table>
     <a href="/addalbum">Add New Album</a>

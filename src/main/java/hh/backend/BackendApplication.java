@@ -73,6 +73,7 @@ public class BackendApplication {
 			for (Album album : albumRepository.findAll()) {
 				log.info(album.toString());
 			}
+			log.info("Homma pyörii");
 
 		};
 	}
