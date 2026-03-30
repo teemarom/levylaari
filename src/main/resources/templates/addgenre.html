@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Levylaari Add Genre</title>
+</head>
+<body>
+    <h1>Add New Genre</h1>
+
+    <div>
+        <form th:object="${genre}" th:action="@{/savegenre}" method="post">
+
+            <label for="genreName">Genre Name: </label>
+            <input type="text" id="genreName" th:field="*{genreName}" /> <br>
+
+            <input type="submit" value="Add Genre" />
+
+        </form>
+    </div>
+    
+</body>
+</html>

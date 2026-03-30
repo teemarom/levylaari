@@ -2,6 +2,7 @@ package hh.backend.web;
 
 import hh.backend.domain.Album;
 import hh.backend.domain.AlbumRepository;
+import hh.backend.domain.Genre;
 import hh.backend.domain.GenreRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -45,7 +46,7 @@ public class MyController {
     public String addBook(Model model) {
         model.addAttribute("album", new Album());
         model.addAttribute("genres", genreRepository.findAll());
-        return "addalbum"; // addAlbum.htm
+        return "addalbum"; // addalbum.htm
     }
 
     // save album
@@ -60,5 +61,19 @@ public class MyController {
     public String delete(@PathVariable("albumId") Long albumId, Model model) {
         albumRepository.deleteById(albumId);
         return "redirect:../albumlist"; 
+    }
+
+    // add genre
+    @GetMapping("/addgenre")
+    public String addGenre(Model model) {
+        model.addAttribute("genre", new Genre());
+        return "addgenre"; // addgenre.html
+    }
+
+    // save genre
+    @PostMapping("/savegenre")
+    public String saveGenre(Genre genre) {
+        genreRepository.save(genre);
+        return "redirect:addalbum";
     }
 }
