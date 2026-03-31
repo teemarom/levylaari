@@ -18,6 +18,8 @@
             <th>Release Year</th>
             <th>Track Count</th>
             <th>Genre</th>
+            <th>Edit</th>
+            <th>Delete</th>
         </tr>
 
         <tr th:each="album : ${albums}">
@@ -27,6 +29,7 @@
             <td th:text="${album.releaseYear}"></td>
             <td th:text="${album.trackCount}"></td>
             <td th:text="${album.genre?.genreName}"></td>
+            <td><a th:href="@{/edit/{albumId}(albumId=${album.albumId})}">Edit Album</a></td>
             <td><a th:href="@{/delete/{albumId}(albumId=${album.albumId})}">Delete Album</a></td>
         </tr>
     </table>

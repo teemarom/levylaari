@@ -14,9 +14,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class MyController {
 
+    // annotaatio injektio
     private final GenreRepository genreRepository;
     private final AlbumRepository albumRepository;
 
+    //konstruktori-injektio
     MyController(AlbumRepository albumRepository, GenreRepository genreRepository) {
         this.albumRepository = albumRepository;
         this.genreRepository = genreRepository;
@@ -63,17 +65,13 @@ public class MyController {
         return "redirect:../albumlist"; 
     }
 
-    // add genre
-    @GetMapping("/addgenre")
-    public String addGenre(Model model) {
-        model.addAttribute("genre", new Genre());
-        return "addgenre"; // addgenre.html
+    // edit album
+    @GetMapping("/edit/{albumId}")
+    public String editAlbum(@PathVariable("albumId") Long albumId, Model model) {
+        Album album = albumRepository.findById(albumId).get();
+        model.addAttribute("album", album);
+        model.addAttribute("genres", genreRepository.findAll());
+        return "editalbum"; // editalbum.html
     }
 
-    // save genre
-    @PostMapping("/savegenre")
-    public String saveGenre(Genre genre) {
-        genreRepository.save(genre);
-        return "redirect:addalbum";
-    }
 }

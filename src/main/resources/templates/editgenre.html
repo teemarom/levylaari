@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Levylaari Edit Genre</title>
+</head>
+<body>
+    <h1>Rename Genre</h1>
+
+    <div>
+        <form th:object="${genre}" th:action="@{/savegenre}" method="post">
+            <input type="hidden" th:field="*{genreId}">
+
+            <label for="genreName">New Genre Name: </label>
+            <input type="text" id="genreName" th:field="*{genreName}" /> <br>
+
+            <input type="submit" value="Rename Genre" />
+
+        </form>
+    </div>
+    
+</body>
+</html>
