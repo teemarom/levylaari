@@ -32,7 +32,7 @@ public class GenreController {
     @PostMapping("/savegenre")
     public String saveGenre(Genre genre) {
         genreRepository.save(genre);
-        return "redirect:addalbum";
+        return "redirect:albumlist";
     }
 
     // delete genre
