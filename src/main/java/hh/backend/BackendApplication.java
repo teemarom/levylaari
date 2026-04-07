@@ -82,9 +82,16 @@ public class BackendApplication {
 			}
 			log.info("Homma pyörii");
 
+			AppUser user1 = new AppUser(
+				"testaaja",
+				"$2a$12$mHZc65RrpgdgcUB36dVaX.EXnlVj479LlSGqdnlU81XWEl7oJD.z6",
+				"ADMIN"
+			); 
+			appUserRepository.save(user1);
+
 			AppUser user2 = new AppUser(
-				"admin",
-				"$2a$12$HI1OU4UMny7Di4lcUxFoy.4j9EoRRKgRLpAGT2/EG7u1gxNP681wu",
+				"Teemu",
+				"$2a$12$YsbZE34pU7NFNZvBB3uZeeCyqUlOvju0hAIr5EIR3/tnPf9vMURX.",
 				"ADMIN");
 
 			appUserRepository.save(user2);

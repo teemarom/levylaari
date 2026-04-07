@@ -3,33 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
     <title>Levylaari Add Genre</title>
 </head>
-<body>
+<body style="margin: 10px;">
     <h1>Add or Edit Genres</h1>
 
-    <table>
+    <table class="table table-striped" style="max-width: 600px">
         <tr>
-            <th>Current Genres</th>
-            <th>Rename</th>
-            <th>Delete</th>
+            <th>Genres </th>
+            <th>Rename </th>
+            <th>Delete </th>
             
         </tr>
 
         <tr th:each="genre : ${genres}">
             <td th:text="${genre.genreName}"></td>
-            <td><a th:href="@{/editgenre/{genreId}(genreId=${genre.genreId})}">Rename Genre</a></td>
-            <td><a th:href="@{/deletegenre/{genreId}(genreId=${genre.genreId})}">Delete Genre</a></td>
+            <td><a class="btn btn-info" th:href="@{/editgenre/{genreId}(genreId=${genre.genreId})}">Rename Genre</a></td>
+            <td><a class="btn btn-danger" th:href="@{/deletegenre/{genreId}(genreId=${genre.genreId})}">Delete Genre</a></td>
         </tr>
     </table>
 
     <div>
         <form th:object="${genre}" th:action="@{/savegenre}" method="post">
-
             <label for="genreName">New Genre: </label>
             <input type="text" id="genreName" th:field="*{genreName}" /> <br>
-
-            <input type="submit" value="Add Genre" />
+            <input class="btn btn-success" type="submit" value="Add Genre" />
 
         </form>
     </div>

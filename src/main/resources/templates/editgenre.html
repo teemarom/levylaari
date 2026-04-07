@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
     <title>Levylaari Edit Genre</title>
 </head>
 <body>
@@ -12,7 +13,7 @@
         <form th:object="${genre}" th:action="@{/savegenre}" method="post">
             <input type="hidden" th:field="*{genreId}">
 
-            <label for="genreName">New Genre Name: </label>
+            <label for="genreName">Rename Genre: </label>
             <input type="text" id="genreName" th:field="*{genreName}" /> <br>
 
             <input type="submit" value="Rename Genre" />
