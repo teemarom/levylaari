@@ -54,6 +54,7 @@ public class MyController {
     // save album
     @PostMapping("/save")
     public String save(Album album) {
+        // tallennetaan albumin kuuntelija Principal olion avulla
         albumRepository.save(album);
         return "redirect:albumlist"; 
     }

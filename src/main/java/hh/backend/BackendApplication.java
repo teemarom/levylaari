@@ -1,5 +1,6 @@
 package hh.backend;
 
+import hh.backend.domain.AppUserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
@@ -11,6 +12,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import hh.backend.domain.Album;
 import hh.backend.domain.AlbumRepository;
+import hh.backend.domain.AppUser;
 import hh.backend.domain.Genre;
 import hh.backend.domain.GenreRepository;
 import jakarta.persistence.JoinColumn;
@@ -19,7 +21,12 @@ import jakarta.persistence.ManyToOne;
 @SpringBootApplication
 public class BackendApplication {
 
-	private static final Logger log = LoggerFactory.getLogger(BackendApplication.class); 
+	private final AppUserRepository appUserRepository;
+    private static final Logger log = LoggerFactory.getLogger(BackendApplication.class);
+
+    BackendApplication(AppUserRepository appUserRepository) {
+        this.appUserRepository = appUserRepository;
+    } 
 
 	public static void main(String[] args) {
 		SpringApplication.run(BackendApplication.class, args);
@@ -74,6 +81,13 @@ public class BackendApplication {
 				log.info(album.toString());
 			}
 			log.info("Homma pyörii");
+
+			AppUser user2 = new AppUser(
+				"admin",
+				"$2a$12$HI1OU4UMny7Di4lcUxFoy.4j9EoRRKgRLpAGT2/EG7u1gxNP681wu",
+				"ADMIN");
+
+			appUserRepository.save(user2);
 
 		};
 	}

@@ -19,6 +19,7 @@ public class Album {
     private String artist;
     private int releaseYear;
     private int trackCount;
+    // user owner (AppUser)
     @ManyToOne
     @JsonIgnoreProperties("albums") // estää loputtoman loopin
     @JoinColumn(name="genreId")

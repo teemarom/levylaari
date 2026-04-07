@@ -6,10 +6,17 @@
     <title>Levylaari Listaus</title>
 </head>
 <body>
+
     <div style="display: flex; justify-content: space-between; align-items: center">
         <h2>LEVYLAARI</h2>
-        <button> Log Out</button>
+
+        <h1>Hello <span sec:authentication="name"></span>!</h1>
+
+        <form th:action="@{/logout}" method="post">
+            <input type="submit" value="Sign Out" />
+        </form>
     </div>
+
     <table>
         <tr>
             <th>Album ID</th>

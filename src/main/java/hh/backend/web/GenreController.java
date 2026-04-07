@@ -32,14 +32,14 @@ public class GenreController {
     @PostMapping("/savegenre")
     public String saveGenre(Genre genre) {
         genreRepository.save(genre);
-        return "redirect:albumlist";
+        return "redirect:addgenre"; // addgenre.html
     }
 
     // delete genre
     @GetMapping("/deletegenre/{genreId}")
     public String deleteGenre(@PathVariable("genreId") Long genreId, Model model) {
         genreRepository.deleteById(genreId);
-        return "redirect:../addgenre";
+        return "redirect:../addgenre"; //addgenre.html
     }
 
     // edit genre
