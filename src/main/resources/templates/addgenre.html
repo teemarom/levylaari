@@ -27,7 +27,8 @@
     <div>
         <form th:object="${genre}" th:action="@{/savegenre}" method="post">
             <label for="genreName">New Genre: </label>
-            <input type="text" id="genreName" th:field="*{genreName}" /> <br>
+            <input type="text" id="genreName" th:field="*{genreName}" />
+            <span th:if="${#fields.hasErrors('genreName')}" th:errors="*{genreName}"></span><br>
             <input class="btn btn-success" type="submit" value="Add Genre" />
 
         </form>

@@ -4,8 +4,11 @@ import hh.backend.domain.Album;
 import hh.backend.domain.AlbumRepository;
 import hh.backend.domain.Genre;
 import hh.backend.domain.GenreRepository;
+import jakarta.validation.Valid;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,7 +21,7 @@ public class MyController {
     private final GenreRepository genreRepository;
     private final AlbumRepository albumRepository;
 
-    //konstruktori-injektio
+    // konstruktori-injektio
     MyController(AlbumRepository albumRepository, GenreRepository genreRepository) {
         this.albumRepository = albumRepository;
         this.genreRepository = genreRepository;
@@ -31,11 +34,11 @@ public class MyController {
     }
 
     // log in
-    @RequestMapping(value="/login")
+    @RequestMapping(value = "/login")
     public String login() {
         return "login"; // login.html
     }
-    
+
     // album list
     @GetMapping("/albumlist")
     public String albumList(Model model) {
@@ -53,17 +56,20 @@ public class MyController {
 
     // save album
     @PostMapping("/save")
-    public String save(Album album) {
-        // tallennetaan albumin kuuntelija Principal olion avulla
+    public String save(@Valid Album album, BindingResult result, Model model) {
+        if (result.hasErrors()) {
+            model.addAttribute("genres", genreRepository.findAll());
+            return "addalbum";
+        }
         albumRepository.save(album);
-        return "redirect:albumlist"; 
+        return "redirect:albumlist";
     }
 
     // delete album
     @GetMapping("/delete/{albumId}")
     public String delete(@PathVariable("albumId") Long albumId, Model model) {
         albumRepository.deleteById(albumId);
-        return "redirect:../albumlist"; 
+        return "redirect:../albumlist";
     }
 
     // edit album

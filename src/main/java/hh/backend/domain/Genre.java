@@ -10,6 +10,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import jakarta.validation.constraints.NotBlank;
 
 @Entity // tietokannan taulun määrittely
 public class Genre {
@@ -17,6 +18,7 @@ public class Genre {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO) // tietokanta generoi uudelle genrelle id-arvon
     private Long genreId;
+    @NotBlank
     private String genreName;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "genre")
     @JsonIgnore // estää loputtoman loopin

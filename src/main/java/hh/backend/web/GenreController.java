@@ -2,12 +2,14 @@ package hh.backend.web;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import hh.backend.domain.Genre;
 import hh.backend.domain.GenreRepository;
+import jakarta.validation.Valid;
 
 @Controller
 public class GenreController {
@@ -30,7 +32,11 @@ public class GenreController {
 
     // save genre
     @PostMapping("/savegenre")
-    public String saveGenre(Genre genre) {
+    public String saveGenre(@Valid Genre genre, BindingResult result, Model model) {
+        if (result.hasErrors()) {
+            model.addAttribute("genres", genreRepository.findAll());
+            return "addgenre";
+        }
         genreRepository.save(genre);
         return "redirect:addgenre"; // addgenre.html
     }

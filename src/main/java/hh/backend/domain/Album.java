@@ -8,6 +8,10 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
 public class Album {
@@ -15,9 +19,15 @@ public class Album {
     @Id // taulun PK-sarake
     @GeneratedValue(strategy = GenerationType.IDENTITY) // tietokanta generoi uudelle albumille id-arvon
     private Long albumId;
+    @NotBlank
     private String title;
+    @NotBlank
     private String artist;
+    @NotNull
+    @Min(1900)
+    @Max(2030)
     private int releaseYear;
+    @Min(1)
     private int trackCount;
     // user owner (AppUser)
     @ManyToOne
