@@ -4,16 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
+    <link rel="stylesheet" href="/css/style.css">
     <title>Levylaari Listaus</title>
 </head>
 <body style="margin: 10px;">
 
-    <div style="display: flex; justify-content: space-between; align-items: center" >
-        <h2>LEVYLAARI</h2>
+    <div class="header" >
+        <h2 class="left">LEVYLAARI</h2>
 
-        <h1>Hello <span th:text="${#authentication.name != 'anonymousUser'} ? ${#authentication.name} : 'vieras'"></span>!!</h1>
+        <h1 class="center">Hello <span th:text="${#authentication.name != 'anonymousUser'} ? ${#authentication.name} : 'vieras'"></span>!!</h1>
 
-        <form th:action="@{/logout}" method="post">
+        <form class="right" th:action="@{/logout}" method="post" sec:authorize="hasAuthority('ADMIN')">
             <input class="btn btn-warning" type="submit" value="Sign Out" />
         </form>
     </div>
@@ -37,13 +38,21 @@
             <td th:text="${album.releaseYear}"></td>
             <td th:text="${album.trackCount}"></td>
             <td th:text="${album.genre?.genreName}"></td>
-            <td sec:authorize="hasAuthority('ADMIN')"><a class="btn btn-info" th:href="@{/edit/{albumId}(albumId=${album.albumId})}">Edit Album</a></td>
-            <td sec:authorize="hasAuthority('ADMIN')"><a class="btn btn-danger" th:href="@{/delete/{albumId}(albumId=${album.albumId})}">Delete Album</a></td>
+            <td sec:authorize="hasAuthority('ADMIN')">
+                <a class="btn btn-info" th:href="@{/edit/{albumId}(albumId=${album.albumId})}">
+                    Edit Album</a>
+                </td>
+            <td sec:authorize="hasAuthority('ADMIN')">
+                <a class="btn btn-danger" th:href="@{/delete/{albumId}(albumId=${album.albumId})}" onclick="return confirm('Delete album?')">
+                    Delete Album
+                </a>
+            </td>
         </tr>
     </table>
 
     <div sec:authorize="isAnonymous()">
         <h4>Log in for full features..</h4>
+        <a href="/">Back To Main Page</a>
     </div>
 
     <button class="btn btn-success" sec:authorize="hasAuthority('ADMIN')" onclick="window.location.href='/addalbum'">Add New Album</button>
