@@ -19,8 +19,12 @@
 
         <tr th:each="genre : ${genres}">
             <td th:text="${genre.genreName}"></td>
-            <td><a class="btn btn-info" th:href="@{/editgenre/{genreId}(genreId=${genre.genreId})}">Rename Genre</a></td>
-            <td><a class="btn btn-danger" th:href="@{/deletegenre/{genreId}(genreId=${genre.genreId})}">Delete Genre</a></td>
+            <td><a class="btn btn-info" th:href="@{/editgenre/{genreId}(genreId=${genre.genreId})}">Rename</a></td>
+            <td><a class="btn btn-danger" th:href="@{/deletegenre/{genreId}(genreId=${genre.genreId})}"
+                onclick="return confirm('Delete Genre?')">
+                    Delete
+                </a>
+            </td>
         </tr>
     </table>
 

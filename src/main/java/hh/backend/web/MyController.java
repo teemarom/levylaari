@@ -2,9 +2,12 @@ package hh.backend.web;
 
 import hh.backend.domain.Album;
 import hh.backend.domain.AlbumRepository;
-import hh.backend.domain.Genre;
+
 import hh.backend.domain.GenreRepository;
 import jakarta.validation.Valid;
+
+import java.util.List;
+
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,6 +16,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class MyController {
@@ -79,6 +83,22 @@ public class MyController {
         model.addAttribute("album", album);
         model.addAttribute("genres", genreRepository.findAll());
         return "editalbum"; // editalbum.html
+    }
+
+    // genre albums list
+    @GetMapping("/albums")
+    public String listAlbums(@RequestParam(required = false) String genre, Model model) {
+
+        List<Album> albums;
+
+        if (genre != null && !genre.isEmpty()) {
+            albums = albumRepository.findByGenre_GenreName(genre);
+        } else {
+            albums = albumRepository.findAll();
+        }
+        model.addAttribute("albums", albums);
+        model.addAttribute("selectedGenre", genre);
+        return "albums";
     }
 
 }

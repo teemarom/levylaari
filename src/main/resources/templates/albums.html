@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
     <link rel="stylesheet" href="/css/style.css">
-    <title>Levylaari Listaus</title>
+    <title>Levylaari Genrelistaus</title>
 </head>
 
 <body style="margin: 10px;">
@@ -42,7 +42,7 @@
             <td th:text="${album.releaseYear}"></td>
             <td th:text="${album.trackCount}"></td>
             <td>
-                <a  th:href="@{/albums(genre=${album.genre.genreName})}">
+                <a th:href="@{/albums(genre=${album.genre.genreName})}">
                     <span th:text="${album.genre.genreName}"></span>
                 </a>
             </td>
@@ -64,10 +64,9 @@
         <a href="/">Back To Main Page</a>
     </div>
 
-    <button class="btn btn-success" sec:authorize="hasAuthority('ADMIN')" onclick="window.location.href='/addalbum'">Add
-        New Album</button>
-    <button class="btn btn-primary" sec:authorize="hasAuthority('ADMIN')"
-        onclick="window.location.href='/addgenre'">View Genres</button>
+    <button class="btn btn-success" sec:authorize="hasAuthority('ADMIN')" onclick="window.location.href='/addalbum'">Add New Album</button>
+    <button class="btn btn-primary" sec:authorize="hasAuthority('ADMIN')" onclick="window.location.href='/addgenre'">View Genres</button>
+    <button class="btn btn-primary" sec:authorize="hasAuthority('ADMIN')" onclick="window.location.href='/albumlist'">Album List</button>
 </body>
 
 </html>

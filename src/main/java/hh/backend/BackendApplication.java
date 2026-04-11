@@ -8,15 +8,12 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
 import hh.backend.domain.Album;
 import hh.backend.domain.AlbumRepository;
 import hh.backend.domain.AppUser;
 import hh.backend.domain.Genre;
 import hh.backend.domain.GenreRepository;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+
 
 @SpringBootApplication
 public class BackendApplication {
@@ -43,6 +40,7 @@ public class BackendApplication {
 			Genre pop = genreRepository.save(new Genre("Pop"));
 			Genre rap = genreRepository.save(new Genre("Rap"));
 			Genre metal = genreRepository.save(new Genre("Metal"));
+			Genre psytrance = genreRepository.save(new Genre("Psytrance"));
 
 			// Genrejen testitulostus
 			log.info("Print all Genres");
@@ -73,6 +71,22 @@ public class BackendApplication {
 				1971,
 				8,
 				metal
+			));
+
+			albumRepository.save(new Album(
+				"Codex VI",
+				"Shpongle",
+				2017,
+				9,
+				psytrance
+			));
+
+			albumRepository.save(new Album(
+				"Uncut Dope",
+				"Geto Boys",
+				1992,
+				12,
+				rap
 			));
 
 			// Albumien testitulostus
