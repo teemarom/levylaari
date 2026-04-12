@@ -89,13 +89,6 @@ public class BackendApplication {
 				rap
 			));
 
-			// Albumien testitulostus
-			log.info("Print all Albums");
-			for (Album album : albumRepository.findAll()) {
-				log.info(album.toString());
-			}
-			log.info("Homma pyörii");
-
 			AppUser user1 = new AppUser(
 				"testaaja",
 				"$2a$12$mHZc65RrpgdgcUB36dVaX.EXnlVj479LlSGqdnlU81XWEl7oJD.z6",
@@ -106,10 +99,16 @@ public class BackendApplication {
 			AppUser user2 = new AppUser(
 				"Teemu",
 				"$2a$12$YsbZE34pU7NFNZvBB3uZeeCyqUlOvju0hAIr5EIR3/tnPf9vMURX.",
-				"ADMIN");
-
+				"ADMIN"
+				);
 			appUserRepository.save(user2);
-
+			
+			// Albumien testitulostus
+			log.info("Print all Albums");
+			for (Album album : albumRepository.findAll()) {
+				log.info(album.toString());
+			}
+			log.info("Homma pyörii");
 		};
 	}
 	

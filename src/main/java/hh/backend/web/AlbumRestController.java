@@ -33,7 +33,7 @@ public class AlbumRestController {
     }
 
     @GetMapping("/albumlist/{albumId}")
-    public @ResponseBody Optional<Album> getOneBookRest(@PathVariable(name = "albumId") Long albumId) {
+    public @ResponseBody Optional<Album> getOneAlbumRest(@PathVariable(name = "albumId") Long albumId) {
         return albumRepository.findById(albumId);
     }
 
